@@ -15,13 +15,10 @@ const validateEnvironment = () => {
   }
   if (
     process.env.NODE_ENV === "production" &&
-    (!process.env.CORS_ORIGINS ||
-      !process.env.RESEND_API_KEY ||
-      !process.env.RESET_EMAIL_FROM ||
-      !process.env.CLIENT_ORIGIN)
+    (!process.env.CORS_ORIGINS || !process.env.CLIENT_ORIGIN)
   ) {
     throw new Error(
-      "Production requires CORS_ORIGINS, Resend email settings, and CLIENT_ORIGIN"
+      "Production requires CORS_ORIGINS and CLIENT_ORIGIN"
     );
   }
   if (process.env.CLIENT_ORIGIN) {
