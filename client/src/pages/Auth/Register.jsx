@@ -168,11 +168,7 @@ function Register() {
         throw new Error(data.message || "Registration failed.");
       }
 
-      setSuccess("Account created successfully! Redirecting to login...");
-
-      setTimeout(() => {
-        navigate("/login");
-      }, 1200);
+      navigate("/login", { state: { registrationComplete: true } });
     } catch (error) {
       setError(error.message || "Unable to create account. Please try again.");
     } finally {

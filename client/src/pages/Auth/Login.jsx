@@ -1,6 +1,6 @@
 import { API_BASE_URL } from "../services/api.js";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import {
   FiArrowRight,
@@ -24,7 +24,12 @@ function Login() {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const location = useLocation();
+  const [success, setSuccess] = useState(
+    location.state?.registrationComplete
+      ? "Account created successfully. Please sign in."
+      : "",
+  );
 
   const navigate = useNavigate();
 
@@ -91,17 +96,13 @@ function Login() {
         localStorage.setItem("role", role);
       }
 
-      setSuccess("Login successful! Redirecting...");
-
-      setTimeout(() => {
-        if (data.user?.role === "employer") {
-          navigate("/employer/dashboard");
-        } else if (data.user?.role === "admin") {
-          navigate("/admin/dashboard");
-        } else {
-          navigate("/student/dashboard");
-        }
-      }, 800);
+      if (data.user?.role === "employer") {
+        navigate("/employer/dashboard");
+      } else if (data.user?.role === "admin") {
+        navigate("/admin/dashboard");
+      } else {
+        navigate("/student/dashboard");
+      }
     } catch (error) {
       setError(error.message || "Unable to login. Please try again.");
     } finally {
