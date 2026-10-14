@@ -17,7 +17,7 @@ function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.2fr]">
           <div>
             <a href="/" className="inline-flex items-center gap-2">
-              <span className="flex h-10 w-10 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-secondary)] text-lg font-extrabold text-white shadow-md">
+              <span className="flex h-10 w-10 items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-secondary-dark)] text-lg font-extrabold text-white shadow-md">
                 I
               </span>
 
@@ -38,7 +38,7 @@ function Footer() {
               <a
                 href="#"
                 aria-label="LinkedIn"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-all hover:border-[var(--color-secondary)] hover:bg-[var(--color-secondary)]"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-all hover:border-[var(--color-secondary-dark)] hover:bg-[var(--color-secondary-dark)]"
               >
                 <FiLinkedin size={16} />
               </a>
@@ -46,7 +46,7 @@ function Footer() {
               <a
                 href="#"
                 aria-label="Instagram"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-all hover:border-[var(--color-secondary)] hover:bg-[var(--color-secondary)]"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-all hover:border-[var(--color-secondary-dark)] hover:bg-[var(--color-secondary-dark)]"
               >
                 <FiInstagram size={16} />
               </a>
@@ -54,7 +54,7 @@ function Footer() {
               <a
                 href="#"
                 aria-label="Facebook"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-all hover:border-[var(--color-secondary)] hover:bg-[var(--color-secondary)]"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-all hover:border-[var(--color-secondary-dark)] hover:bg-[var(--color-secondary-dark)]"
               >
                 <FiFacebook size={16} />
               </a>
@@ -62,7 +62,7 @@ function Footer() {
               <a
                 href="#"
                 aria-label="Twitter"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-all hover:border-[var(--color-secondary)] hover:bg-[var(--color-secondary)]"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-all hover:border-[var(--color-secondary-dark)] hover:bg-[var(--color-secondary-dark)]"
               >
                 <FiTwitter size={16} />
               </a>
@@ -70,7 +70,7 @@ function Footer() {
           </div>
 
           <div>
-            <h4 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white">
+            <h4 className="border-l-2 border-[var(--color-secondary)] pl-3 !text-[11px] font-bold uppercase !tracking-[0.16em] !text-[var(--color-background)]">
               For Candidates
             </h4>
 
@@ -114,7 +114,7 @@ function Footer() {
           </div>
 
           <div>
-            <h4 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white">
+            <h4 className="border-l-2 border-[var(--color-secondary)] pl-3 !text-[11px] font-bold uppercase !tracking-[0.16em] !text-[var(--color-background)]">
               For Employers
             </h4>
 
@@ -158,7 +158,7 @@ function Footer() {
           </div>
 
           <div>
-            <h4 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white">
+            <h4 className="border-l-2 border-[var(--color-secondary)] pl-3 !text-[11px] font-bold uppercase !tracking-[0.16em] !text-[var(--color-background)]">
               Get In Touch
             </h4>
 

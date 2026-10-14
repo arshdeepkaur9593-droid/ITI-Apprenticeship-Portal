@@ -96,10 +96,13 @@ through the normal application/admin process.
    `RESET_EMAIL_FROM`, and `CLIENT_ORIGIN`. These settings are required by the
    server's production startup validation.
 3. Set `CORS_ORIGINS` to the exact HTTPS frontend origin(s).
-4. Build the client with `VITE_API_BASE_URL` set to the public API base URL
-   ending in `/api`, or route same-origin `/api` requests to the API.
-5. Configure the frontend host to serve `index.html` for client-side routes so
-   refreshing a nested route continues to load the app.
+4. In Vercel, set the project Root Directory to `client` so Vercel uses the
+   client build and `client/vercel.json`. Keep the Vite build output directory
+   as `dist`.
+5. Build the client with `VITE_API_BASE_URL` set to the public API base URL
+   ending in `/api`, or route same-origin `/api` requests to the API. The
+   client's Vercel rewrite serves the SPA entry point for frontend routes and
+   excludes `/api` requests.
 6. Confirm the frontend can call the API, password recovery delivers mail, and
    the existing MongoDB data remains intact. Do not run seed/reset scripts
    against production.

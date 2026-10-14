@@ -544,7 +544,7 @@ const EmployerDashboard = () => {
 
             <Link
               to="/employer/post-job"
-              className="inline-flex w-fit shrink-0 items-center gap-2 rounded-xl bg-[var(--color-secondary)] px-5 py-3 text-sm font-semibold ! transition hover:bg-[var(--color-secondary-dark)]"
+              className="inline-flex w-fit shrink-0 items-center gap-2 rounded-xl bg-[var(--color-secondary-dark)] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:shadow-md"
             >
               Post New Opening
               <FiArrowRight />

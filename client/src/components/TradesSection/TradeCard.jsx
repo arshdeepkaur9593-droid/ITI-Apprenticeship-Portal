@@ -12,14 +12,14 @@ const TradeCard = ({ icon, title, description, opportunities = 0 }) => {
   return (
     <div className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-green-200 hover:shadow-xl">
       <div className="flex items-start justify-between">
-        <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-green-50 text-2xl text-green-700 transition-all duration-300 group-hover:bg-green-700 group-hover:">
+        <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-green-50 text-2xl text-green-700 transition-all duration-300 group-hover:bg-green-700 group-hover:text-white group-focus-within:bg-green-700 group-focus-within:text-white">
           {icon}
         </div>
 
         <button
           type="button"
           onClick={handleExploreTrade}
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-400 transition-all duration-300 hover:border-green-600 hover:bg-green-600 hover:"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition-all duration-300 hover:border-green-600 hover:bg-green-600 hover:text-white focus-visible:border-green-600 focus-visible:bg-green-600 focus-visible:text-white active:border-green-700 active:bg-green-700 active:text-white"
           aria-label={`Explore ${title}`}
         >
           <FiArrowUpRight size={18} />

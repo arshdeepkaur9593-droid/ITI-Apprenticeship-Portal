@@ -323,50 +323,74 @@ function StudentDashboard() {
         )}
 
         <section className="mb-6 grid gap-5 lg:grid-cols-[1fr_330px]">
-          <div className="rounded-2xl bg-[var(--color-heading)] p-6 shadow-[var(--shadow-md)] sm:p-7">
+          <div className="rounded-2xl border border-green-100 bg-[var(--color-surface-green)] p-6 shadow-[var(--shadow-sm)] sm:p-7">
             <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
               <div>
-                <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-semibold !">
-                  <FiZap size={13} className="!" />
-                  <span className="!">Candidate Profile</span>
+                <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-green-100 bg-white px-3 py-1.5 text-xs font-semibold text-[var(--color-primary-dark)] shadow-sm">
+                  <FiZap size={13} className="text-[var(--color-secondary-dark)]" />
+                  <span>Candidate Profile</span>
                 </div>
 
-                <h2 className="max-w-xl text-2xl font-bold leading-tight ! sm:text-3xl">
+                <h2 className="max-w-xl text-2xl font-bold leading-tight text-[var(--color-heading)] sm:text-3xl">
                   Your skills are your strongest career asset.
                 </h2>
 
-                <p className="mt-3 max-w-xl text-sm leading-6 !/65">
+                <p className="mt-3 max-w-xl text-sm leading-6 text-[var(--color-body)]">
                   Complete your profile to improve your visibility and get
                   matched with more relevant ITI jobs and apprenticeships.
                 </p>
 
                 <Link
                   to="/student/profile"
-                  className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[var(--color-secondary)] px-5 py-3 text-sm font-semibold ! transition hover:bg-[var(--color-secondary-dark)]"
+                  className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-5 py-3 text-sm font-semibold !text-white shadow-sm transition hover:bg-[var(--color-primary-dark)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
                 >
-                  <span className="!">Complete Profile</span>
-                  <FiArrowRight size={16} className="!" />
+                  <span>Complete Profile</span>
+                  <FiArrowRight size={16} />
                 </Link>
               </div>
 
-              <div className="flex h-32 w-32 shrink-0 flex-col items-center justify-center rounded-full border-[10px] border-white/10 bg-white/5">
-                <span className="text-3xl font-bold !">
-                  {loading ? "—" : `${profileCompletion}%`}
-                </span>
-
-                <span className="mt-1 text-xs !/55">Profile Complete</span>
+              <div
+                className="mx-auto flex h-32 w-32 shrink-0 items-center justify-center rounded-full p-2 sm:mx-0"
+                style={{
+                  background: `conic-gradient(var(--color-primary) ${profileCompletion}%, var(--color-border) 0)`,
+                }}
+                role="img"
+                aria-label={`Profile ${loading ? "completion loading" : `${profileCompletion}% complete`}`}
+              >
+                <div className="flex h-full w-full flex-col items-center justify-center rounded-full bg-white shadow-inner">
+                  <span className="text-3xl font-bold leading-none text-[var(--color-primary-dark)]">
+                    {loading ? "—" : `${profileCompletion}%`}
+                  </span>
+                  <span className="mt-2 text-[11px] font-semibold text-[var(--color-muted)]">
+                    Profile complete
+                  </span>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="rounded-2xl border border-[var(--color-border)] bg-white p-5 shadow-[var(--shadow-sm)]">
+          <div className="rounded-2xl border border-[var(--color-border)] bg-white p-5 shadow-[var(--shadow-sm)] sm:p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]">
                   Profile Strength
                 </p>
 
-                <p className="mt-1 text-lg font-bold text-[var(--color-heading)]">
+                <p
+                  className={`mt-2 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-bold ${
+                    profileCompletion >= 60
+                      ? "bg-[var(--color-surface-green)] text-[var(--color-primary-dark)]"
+                      : "bg-[var(--color-surface-orange)] text-[var(--color-secondary-dark)]"
+                  }`}
+                >
+                  <span
+                    className={`h-2 w-2 rounded-full ${
+                      profileCompletion >= 60
+                        ? "bg-[var(--color-primary)]"
+                        : "bg-[var(--color-secondary-dark)]"
+                    }`}
+                    aria-hidden="true"
+                  />
                   {profileCompletion >= 80
                     ? "Excellent"
                     : profileCompletion >= 60
@@ -377,21 +401,37 @@ function StudentDashboard() {
                 </p>
               </div>
 
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-surface-green)] ">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-surface-green)] text-[var(--color-primary)]">
                 <FiUser size={18} />
               </div>
             </div>
 
-            <div className="mt-5 h-2 overflow-hidden rounded-full bg-[var(--color-surface-soft)]">
+            <div className="mt-5">
+              <div className="mb-2 flex items-center justify-between text-xs font-medium">
+                <span className="text-[var(--color-muted)]">Profile completion</span>
+                <span className="text-[var(--color-primary-dark)]">
+                  {loading ? "—" : `${profileCompletion}%`}
+                </span>
+              </div>
               <div
-                className="h-full rounded-full btn btn-primary text-white transition-all duration-500"
-                style={{ width: `${profileCompletion}%` }}
-              />
+                className="h-2.5 overflow-hidden rounded-full bg-[var(--color-surface-soft)]"
+                role="progressbar"
+                aria-label="Profile completion"
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-valuenow={profileCompletion}
+                aria-valuetext={loading ? "Loading" : `${profileCompletion}%`}
+              >
+                <div
+                  className="h-full rounded-full bg-[var(--color-primary)] transition-all duration-500"
+                  style={{ width: `${profileCompletion}%` }}
+                />
+              </div>
             </div>
 
-            <div className="mt-5 space-y-3">
+            <div className="mt-4 divide-y divide-[var(--color-border-light)]">
               <div className="flex items-center justify-between text-sm">
-                <span className="text-[var(--color-body)]">Basic details</span>
+                <span className="py-2.5 text-[var(--color-body)]">Basic details</span>
 
                 {profile?.phone && profile?.city && profile?.state ? (
                   <FiCheckCircle
@@ -399,14 +439,14 @@ function StudentDashboard() {
                     className="text-[var(--color-success)]"
                   />
                 ) : (
-                  <span className="text-xs font-semibold text-[var(--color-secondary)]">
+                  <span className="rounded-full bg-[var(--color-surface-orange)] px-2.5 py-1 text-xs font-semibold text-[var(--color-secondary-dark)]">
                     Add now
                   </span>
                 )}
               </div>
 
               <div className="flex items-center justify-between text-sm">
-                <span className="text-[var(--color-body)]">
+                <span className="py-2.5 text-[var(--color-body)]">
                   Education & Trade
                 </span>
 
@@ -416,14 +456,14 @@ function StudentDashboard() {
                     className="text-[var(--color-success)]"
                   />
                 ) : (
-                  <span className="text-xs font-semibold text-[var(--color-secondary)]">
+                  <span className="rounded-full bg-[var(--color-surface-orange)] px-2.5 py-1 text-xs font-semibold text-[var(--color-secondary-dark)]">
                     Add now
                   </span>
                 )}
               </div>
 
               <div className="flex items-center justify-between text-sm">
-                <span className="text-[var(--color-body)]">Skills</span>
+                <span className="py-2.5 text-[var(--color-body)]">Skills</span>
 
                 {profile?.skills?.length > 0 ? (
                   <FiCheckCircle
@@ -431,14 +471,14 @@ function StudentDashboard() {
                     className="text-[var(--color-success)]"
                   />
                 ) : (
-                  <span className="text-xs font-semibold text-[var(--color-secondary)]">
+                  <span className="rounded-full bg-[var(--color-surface-orange)] px-2.5 py-1 text-xs font-semibold text-[var(--color-secondary-dark)]">
                     Add now
                   </span>
                 )}
               </div>
 
               <div className="flex items-center justify-between text-sm">
-                <span className="text-[var(--color-body)]">Resume</span>
+                <span className="py-2.5 text-[var(--color-body)]">Resume</span>
 
                 {profile?.resume ? (
                   <FiCheckCircle
@@ -446,7 +486,7 @@ function StudentDashboard() {
                     className="text-[var(--color-success)]"
                   />
                 ) : (
-                  <span className="text-xs font-semibold text-[var(--color-secondary)]">
+                  <span className="rounded-full bg-[var(--color-surface-orange)] px-2.5 py-1 text-xs font-semibold text-[var(--color-secondary-dark)]">
                     Add now
                   </span>
                 )}
@@ -455,7 +495,7 @@ function StudentDashboard() {
 
             <Link
               to="/student/profile"
-              className="mt-5 flex items-center justify-center gap-2 rounded-xl border border-[var(--color-border)] px-4 py-2.5 text-sm font-semibold text-[var(--color-heading)] transition hover:border-[var(--color-primary)] hover:"
+              className="mt-5 flex items-center justify-center gap-2 rounded-xl border border-[var(--color-primary)] px-4 py-2.5 text-sm font-semibold !text-[var(--color-primary-dark)] transition hover:bg-[var(--color-surface-green)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
             >
               Edit Profile
               <FiEdit3 size={15} />

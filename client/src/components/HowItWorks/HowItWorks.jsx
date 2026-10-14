@@ -216,9 +216,10 @@ function HowItWorks() {
                           rounded-full
                           border-4
                           border-[var(--color-surface)]
-                          bg-[var(--color-secondary)]
+                          bg-[var(--color-secondary-dark)]
                           text-xs
                           font-extrabold
+                          text-white
                           
                           shadow-[var(--shadow-md)]
                         "

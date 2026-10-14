@@ -218,7 +218,7 @@ function Navbar({ accountOnly = false }) {
     bg-[var(--color-primary)] text-white
     shadow-md
     transition-all duration-200
-    group-hover:bg-[var(--color-secondary)]
+    group-hover:bg-[var(--color-secondary-dark)]
     group-hover:shadow-lg
   "
             >
@@ -334,10 +334,12 @@ function Navbar({ accountOnly = false }) {
                 transition-all
                 duration-200
                 hover:-translate-y-0.5
-                hover:bg-secondary
-                hover:
+                hover:bg-[var(--color-secondary-dark)]
+                hover:text-white
                 hover:shadow-[0_8px_20px_rgba(249,115,22,0.32)]
                 active:translate-y-0
+                active:bg-[var(--color-secondary-dark)]
+                active:text-white
                   "
                 >
                   Register
@@ -369,12 +371,15 @@ function Navbar({ accountOnly = false }) {
               rounded-[var(--radius-md)]
               border
               border-white/30
-              bg-primary-dark/80
-              
+              bg-[var(--color-primary-dark)]
+              text-white
               shadow-md
               backdrop-blur-sm
               transition
-              hover:bg-secondary
+              hover:bg-[var(--color-secondary-dark)]
+              hover:text-white
+              active:bg-[var(--color-secondary-dark)]
+              active:text-white
               lg:hidden
             "
           >

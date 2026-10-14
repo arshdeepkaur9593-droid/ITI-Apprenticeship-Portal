@@ -44,7 +44,7 @@ function CTASection() {
               <button
                 type="button"
                 onClick={() => navigate("/employer/jobs")}
-                className="group inline-flex items-center gap-2 rounded-[var(--radius-md)] border border-white/30 bg-white/10 px-6 py-3.5 text-sm font-bold  transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/15"
+                className="group inline-flex items-center gap-2 rounded-[var(--radius-md)] border border-white/30 bg-white/10 px-6 py-3.5 text-sm font-bold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/15"
               >
                 <FiBriefcase size={17} />
                 Hire Skilled Talent

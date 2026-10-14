@@ -178,7 +178,7 @@ function Login() {
 
                 <div className="grid grid-cols-2 gap-3">
                   <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-4 backdrop-blur-sm">
-                    <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--color-secondary)] !text-white">
+                    <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--color-secondary-dark)] !text-white">
                       <FiZap size={17} />
                     </div>
 
@@ -192,7 +192,7 @@ function Login() {
                   </div>
 
                   <div className="rounded-2xl border border-white/10 bg-white/[0.06] p-4 backdrop-blur-sm">
-                    <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--color-primary-light)] !text-white">
+                    <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--color-primary)] !text-white">
                       <FiTool size={17} />
                     </div>
 

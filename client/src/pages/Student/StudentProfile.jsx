@@ -546,9 +546,9 @@ function StudentProfile() {
         <div className="grid gap-6 lg:grid-cols-[300px_1fr]">
           <aside className="space-y-5">
             <div className="overflow-hidden rounded-2xl border border-[var(--color-border)] bg-white shadow-[var(--shadow-sm)]">
-              <div className="bg-[var(--color-heading)] px-5 pb-6 pt-6">
+              <div className="border-b border-green-100 bg-[var(--color-surface-green)] px-5 pb-6 pt-6">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl btn btn-primary text-xl font-bold text-white">
+                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-green-700 to-green-900 text-xl font-bold text-white shadow-sm ring-4 ring-white">
                     {formData.fullName
                       ? formData.fullName
                           .split(" ")
@@ -560,34 +560,45 @@ function StudentProfile() {
                   </div>
 
                   <div className="min-w-0">
-                    <p className="truncate text-lg font-bold text-white">
+                    <p className="truncate text-lg font-bold text-[var(--color-heading)]">
                       {formData.fullName || "Student"}
                     </p>
-                    <p className="mt-1 text-xs text-white/60">ITI Candidate</p>
+                    <span className="mt-1 inline-flex rounded-full border border-green-100 bg-white px-2.5 py-1 text-xs font-semibold text-[var(--color-primary-dark)]">
+                      ITI Candidate
+                    </span>
                   </div>
                 </div>
 
-                <div className="mt-5 flex items-center justify-between">
-                  <span className="text-base text-white/60">
-                    Profile strength
-                  </span>
-                  <span className="text-sm font-bold text-white">
-                    {profileCompletion}%
-                  </span>
-                </div>
-
-                <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/10">
+                <div className="mt-5">
+                  <div className="mb-2 flex items-center justify-between">
+                    <span className="text-sm font-semibold text-[var(--color-primary-dark)]">
+                      Profile strength
+                    </span>
+                    <span className="text-sm font-bold text-[var(--color-primary-dark)]">
+                      {profileCompletion}%
+                    </span>
+                  </div>
                   <div
-                    className="h-full rounded-full bg-[var(--color-secondary)] transition-all"
-                    style={{ width: `${profileCompletion}%` }}
-                  />
+                    className="h-2.5 overflow-hidden rounded-full bg-green-100"
+                    role="progressbar"
+                    aria-label="Profile strength"
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={profileCompletion}
+                    aria-valuetext={`${profileCompletion}%`}
+                  >
+                    <div
+                      className="h-full rounded-full bg-[var(--color-primary)] transition-all duration-500"
+                      style={{ width: `${profileCompletion}%` }}
+                    />
+                  </div>
                 </div>
               </div>
 
               <div className="p-5">
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[var(--color-surface-green)]">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-3 rounded-xl bg-[var(--color-surface-soft)] p-3">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[var(--color-surface-green)] text-[var(--color-primary)]">
                       <FiBriefcase size={16} />
                     </div>
                     <div>
@@ -598,8 +609,8 @@ function StudentProfile() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[var(--color-surface-orange)] text-[var(--color-secondary)]">
+                  <div className="flex items-center gap-3 rounded-xl bg-[var(--color-surface-soft)] p-3">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[var(--color-surface-orange)] text-[var(--color-secondary-dark)]">
                       <FiMapPin size={16} />
                     </div>
                     <div>
@@ -613,8 +624,8 @@ function StudentProfile() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[var(--color-surface-green)]">
+                  <div className="flex items-center gap-3 rounded-xl bg-[var(--color-surface-soft)] p-3">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[var(--color-surface-green)] text-[var(--color-primary)]">
                       <FiBookOpen size={16} />
                     </div>
                     <div>
@@ -631,23 +642,31 @@ function StudentProfile() {
                   </div>
                 </div>
 
-                <div className="mt-6 rounded-xl bg-[var(--color-surface-soft)] p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[var(--color-muted)]">
-                    Profile tip
-                  </p>
-                  <p className="mt-2 text-sm leading-5 text-[var(--color-body)]">
-                    Add a professional resume to make your profile stronger for
-                    employers.
-                  </p>
+                <div className="mt-5 rounded-xl border border-orange-100 bg-[var(--color-surface-orange)] p-4">
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white text-[var(--color-secondary-dark)] shadow-sm">
+                      <FiFileText size={17} />
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[var(--color-secondary-dark)]">
+                        Profile tip
+                      </p>
+                      <p className="mt-1.5 text-sm leading-5 text-[var(--color-body)]">
+                        Add a professional resume to make your profile stronger
+                        for employers.
+                      </p>
+                    </div>
+                  </div>
                   <button
                     type="button"
-                    className="mt-3 text-sm font-semibold hover:underline"
+                    className="mt-3 inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[var(--color-primary-dark)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
                     onClick={() =>
                       document
                         .getElementById("resume-section")
                         ?.scrollIntoView({ behavior: "smooth" })
                     }
                   >
+                    <FiUpload size={15} />
                     Add Resume
                   </button>
                 </div>
@@ -1389,7 +1408,7 @@ function StudentProfile() {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-secondary)] px-6 py-3 text-sm font-semibold transition hover:bg-[var(--color-secondary-dark)] disabled:cursor-not-allowed disabled:opacity-60"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-secondary-dark)] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:shadow-md disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {saving ? (
                     <>

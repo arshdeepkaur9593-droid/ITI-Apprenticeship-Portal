@@ -250,7 +250,7 @@ function Register() {
 
                 <div className="space-y-3">
                   <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.06] p-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--color-secondary)] !text-white">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--color-secondary-dark)] !text-white">
                       <FiUser size={18} />
                     </div>
 
@@ -266,7 +266,7 @@ function Register() {
                   </div>
 
                   <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.06] p-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--color-primary-light)] !text-white">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--color-primary)] !text-white">
                       <FiZap size={18} />
                     </div>
 

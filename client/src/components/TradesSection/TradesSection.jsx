@@ -153,15 +153,16 @@ function TradesSection() {
               rounded-[var(--radius-md)]
               border
               border-[var(--color-primary)]
+              btn
+              btn-primary
+              text-white
               px-4
               py-2.5
               text-sm
               font-semibold
-              
               transition-all
               duration-200
-              hover:btn btn-primary text-white
-              hover:
+              hover:bg-[var(--color-primary-dark)]
             "
           >
             Browse Opportunities
