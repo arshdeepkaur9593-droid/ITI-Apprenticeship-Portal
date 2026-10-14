@@ -11,6 +11,8 @@ import errorMiddleware from "./middleware/errorMiddleware.js";
 const app = express();
 
 app.disable("x-powered-by");
+app.set("trust proxy", process.env.NODE_ENV === "production" ? 1 : false);
+
 app.use((req, res, next) => {
   res.setHeader("X-Content-Type-Options", "nosniff");
   res.setHeader("X-Frame-Options", "DENY");

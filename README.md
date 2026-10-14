@@ -6,6 +6,8 @@ workflows.
 Authentication and password-recovery throttles currently keep counters in
 process memory. They are suitable only for a single API instance; use a shared
 rate-limit store or an upstream gateway when deploying multiple instances.
+Login throttling is keyed by the client IP forwarded through Render's single
+trusted proxy hop and counts unsuccessful responses, not successful sign-ins.
 
 ## Local development
 

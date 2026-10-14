@@ -1,5 +1,5 @@
 import { API_BASE_URL } from "../services/api.js";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import {
@@ -16,6 +16,7 @@ import {
 } from "react-icons/fi";
 
 function Login() {
+  const loginInProgress = useRef(false);
   const [role, setRole] = useState("student");
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -61,6 +62,9 @@ function Login() {
       return;
     }
 
+    if (loginInProgress.current) return;
+    loginInProgress.current = true;
+
     try {
       setLoading(true);
 
@@ -78,6 +82,22 @@ function Login() {
       const data = await response.json();
 
       if (!response.ok) {
+        if (response.status === 429 && data.code === "RATE_LIMITED") {
+          const retryAfter = Number(data.retryAfter);
+          let waitMessage = "a little while";
+          if (Number.isFinite(retryAfter) && retryAfter > 0) {
+            if (retryAfter < 60) {
+              waitMessage =
+                retryAfter === 1 ? "1 second" : `${retryAfter} seconds`;
+            } else {
+              const minutes = Math.ceil(retryAfter / 60);
+              waitMessage = `${minutes} ${minutes === 1 ? "minute" : "minutes"}`;
+            }
+          }
+          throw new Error(
+            `Too many sign-in attempts. Please try again in ${waitMessage}.`,
+          );
+        }
         throw new Error(data.message || "Login failed.");
       }
 
@@ -106,6 +126,7 @@ function Login() {
     } catch (error) {
       setError(error.message || "Unable to login. Please try again.");
     } finally {
+      loginInProgress.current = false;
       setLoading(false);
     }
   };

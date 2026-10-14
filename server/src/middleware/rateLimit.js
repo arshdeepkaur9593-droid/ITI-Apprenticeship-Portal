@@ -1,6 +1,11 @@
 const MAX_TRACKED_CLIENTS = 50000;
 
-const rateLimit = ({ windowMs, max, message }) => {
+const rateLimit = ({
+  windowMs,
+  max,
+  message,
+  skipSuccessfulRequests = false,
+}) => {
   const clients = new Map();
 
   const cleanup = setInterval(() => {
@@ -16,8 +21,13 @@ const rateLimit = ({ windowMs, max, message }) => {
     const clientId = req.ip || req.socket.remoteAddress || "unknown";
     let entry = clients.get(clientId);
 
-    if (!entry || entry.resetAt <= now) {
-      if (!entry && clients.size >= MAX_TRACKED_CLIENTS) {
+    if (entry?.resetAt <= now) {
+      clients.delete(clientId);
+      entry = undefined;
+    }
+
+    if (!entry) {
+      if (clients.size >= MAX_TRACKED_CLIENTS) {
         return res.status(503).json({
           success: false,
           message: "Too many active requests. Please try again later.",
@@ -28,13 +38,34 @@ const rateLimit = ({ windowMs, max, message }) => {
       clients.set(clientId, entry);
     }
 
-    entry.count += 1;
-    if (entry.count > max) {
+    if (entry.count >= max) {
+      const retryAfter = Math.max(
+        1,
+        Math.ceil((entry.resetAt - now) / 1000),
+      );
       res.setHeader(
         "Retry-After",
-        Math.max(1, Math.ceil((entry.resetAt - now) / 1000))
+        retryAfter,
       );
-      return res.status(429).json({ success: false, message });
+      return res.status(429).json({
+        success: false,
+        code: "RATE_LIMITED",
+        message,
+        retryAfter,
+      });
+    }
+
+    entry.count += 1;
+
+    if (skipSuccessfulRequests) {
+      res.once("finish", () => {
+        if (res.statusCode < 400) {
+          entry.count -= 1;
+          if (entry.count === 0 && clients.get(clientId) === entry) {
+            clients.delete(clientId);
+          }
+        }
+      });
     }
 
     next();
